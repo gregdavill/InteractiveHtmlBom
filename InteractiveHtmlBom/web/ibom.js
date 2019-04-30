@@ -99,6 +99,39 @@ function getStoredCheckboxRefs(checkbox) {
   }
 }
 
+function updateProgress() {
+  var elem = document.getElementById("myBar");
+  var total = checkboxCount("sourced")
+  var current = checkboxCount("placed")
+  
+  var width = 100 * current / total;
+  elem.style.width = width + '%';
+  elem.innerHTML = current + '/' + total;
+} 
+
+function checkboxCount(checkboxname){
+  
+    var checkboxnum = 0;
+    while (checkboxnum < checkboxes.length &&
+      checkboxes[checkboxnum].toLowerCase() != checkboxname.toLowerCase()) {
+      checkboxnum++;
+    }
+    if (checkboxnum >= checkboxes.length) {
+      return 0;
+    }
+    var count = 0;
+    var checkbox;
+    var row;
+    for (row of bombody.childNodes) {
+      checkbox = row.childNodes[checkboxnum + 1].childNodes[0];
+      if(checkbox.checked)
+        count++;
+    }
+    return count;
+}
+
+
+
 function getCheckboxState(checkbox, references) {
   var storedRefsSet = getStoredCheckboxRefs(checkbox);
   var currentRefsSet = new Set(references.map(r => r[1]));
@@ -140,6 +173,7 @@ function createCheckboxChangeHandler(checkbox, references) {
       }
     }
     writeStorage("checkbox_" + checkbox, [...refsSet].join(","));
+    updateProgress();
   }
 }
 

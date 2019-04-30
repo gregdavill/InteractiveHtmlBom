@@ -481,6 +481,23 @@ mark.highlight {
   border-bottom: 2px solid black;
 }
 
+#myProgress {
+  width: 100%;
+  background-color: grey;
+  height: 30px;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: rgb(66, 219, 233);
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: black;
+  font-family: Consolas, "DejaVu Sans Mono", Monaco, monospace;
+  font-size: 18px;
+}
+
 .dark #top {
   border-bottom: 2px solid #ccc;
 }
